@@ -1,4 +1,4 @@
-# $Id: JESFTP.pm,v 1.5 2003/07/09 19:15:40 mikeo Exp $
+# @(#)JESFTP.pm	1.1	03/07/09
 
 package MVS::JESFTP;
 
@@ -46,7 +46,7 @@ use Net::FTP;
 
 @ISA = qw(Exporter Net::FTP);
 @EXPORT = qw();
-$VERSION = '1.5';
+$VERSION = '1.1';
 
 =pod
 

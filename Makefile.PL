@@ -1,3 +1,5 @@
+# @(#)Makefile.PL	1.1    03/07/09
+
 use ExtUtils::MakeMaker;
 # See lib/ExtUtils/MakeMaker.pm for details of how to influence
 # the contents of the Makefile that is written.
@@ -9,7 +11,3 @@ WriteMakefile(
     	'ABSTRACT' => 'Submit JCL jobstreams to MVS via FTP',
     ) : (),
 );
-
-# Now fix the Makefile so GNU make can run it ok.
-#require 'FixMakefile.pl';
-#&FixMakefile('Makefile');

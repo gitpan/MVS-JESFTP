@@ -29,77 +29,71 @@ DESCRIPTION
 
 METHODS
   $jes = MVS::JESFTP->open($host, $logonid, $password);
-
     This method creates a connection to the MVS system JES. If the
-    connection is made, `open' returns a reference `$jes' to the JES
-    connection; otherwise `open' returns `undefined'.
+    connection is made, "open" returns a reference $jes to the JES
+    connection; otherwise "open" returns "undefined".
 
-    `open' takes three arguments:
+    "open" takes three arguments:
 
-    `$host'
+    $host
         The IP address or DNS name of the MVS system.
 
-    `$logonid'
+    $logonid
         A valid FTP logon ID for the host.
 
-    `$password'
+    $password
         A valid FTP password for the host.
 
   $jes->submit($job);
-
-    This method submits the jobstream contained in the file `$job'. If the
-    submission is successful, `submit' returns true; otherwise `submit'
-    returns `undefined'.
+    This method submits the jobstream contained in the file $job. If the
+    submission is successful, "submit" returns true; otherwise "submit"
+    returns "undefined".
 
   $aref = $jes->wait_for_results($jobname, $timeout);
-
     This method waits for the output of the submitted job to arrive in the
-    JES *hold queue*. `wait_for_results' returns an array reference `$aref'
-    to the a list of output files for the job suitable for input to
-    `get_results', or `undefined' if NO results were obtained. (1)
+    JES *hold queue*. "wait_for_results" returns an array reference $aref to
+    the a list of output files for the job suitable for input to
+    "get_results", or "undefined" if NO results could be obtained. (1)
 
-    `wait_for_results' takes two arguments:
+    "wait_for_results" takes two arguments:
 
-    `$jobname'
-        The name of the job you presumedly submitted with the `submit'
+    $jobname
+        The name of the job you presumedly submitted with the "submit"
         method.
 
-    `$timeout'
+    $timeout
         How many seconds to wait for the job output to arrive; defaults to
         60.
 
   $result = $jes->get_results($aref);
-
     This method retrieves the output of the submitted job from the JES *hold
-    queue*. `get_results' returns `undefined' if successful; otherwise it
-    returns a reference to an array of names of the files it could not
+    queue*. "get_results" returns "undefined" if successful; otherwise it
+    returns a reference to an array of names of the files it could NOT
     retrieve. (1)
 
-    `get_results' takes one argument:
+    "get_results" takes one argument:
 
-    `$aref'
+    $aref
         An array reference to the a list of output files from the job, such
-        as `wait_for_results' generates. `get_results' will retreive (via
+        as "wait_for_results" generates. "get_results" will retreive (via
         FTP) each output file in turn and store them in the current
         subdirectory; file names will be preserved.
 
   $result = $jes->delete_results($aref);
-
     This method deletes the output of the submitted job from the JES *hold
-    queue*. `delete_results' returns `true' if successful; otherwise it
+    queue*. "delete_results" returns "true" if successful; otherwise it
     returns a reference to an array of names of the jobs it could not
     delete.
 
-    `delete_results' takes one argument:
+    "delete_results" takes one argument:
 
-    `$aref'
+    $aref
         An array reference to the a list of output files from the job, such
-        as `wait_for_results' generates. `delete_results' will delete each
+        as "wait_for_results" generates. "delete_results" will delete each
         job in turn.
 
   $jes->quit;
-
-    This method closes the connection to JES. It is just the Net::FTP `quit'
+    This method closes the connection to JES. It is just the Net::FTP "quit"
     method.
 
     (1) To use this method, your JCL *JOB* card must specify a *MSGCLASS*
@@ -111,7 +105,7 @@ PREREQUISITES
     You have to have Net::FTP installed.
 
 INSTALLATION
-     tar xzf MVS-JESFTP-1.05.tar.gz
+     tar xzf MVS-JESFTP-1.00.tar.gz
      perl Makefile.PL
      make
      #
@@ -140,6 +134,7 @@ AUTHOR
     General Public License or the Artistic License for more details.
 
 SEE ALSO
-    `perl(1)'
+    perl(1)
 
-    `Net::FTP'
+    "Net::FTP"
+

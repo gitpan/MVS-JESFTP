@@ -1,3 +1,4 @@
+# @(#)test.pl	1.1    03/07/09
 # Before `make install' is performed this script should be runnable with
 # `make test'. After `make install' it should work as `perl test.pl'
 
@@ -23,22 +24,22 @@ print "ok 1\n";
 # as needed.
 
 my($host, $logonid, $password, $job, $jobname) =
-	('nmgsdisd.state.nm.us', 'DPMIKE', 'JTREE', './TEST.SEQ', 'DPMIKE1');
+    ('nmgsdisd.state.nm.us', 'DPMIKE', 'JTREE', './TEST.SEQ', 'DPMIKE1');
 
-$jes = MVS::JESFTP->open($host, $logonid, $password)	or die "not ok 2\n";
+$jes = MVS::JESFTP->open($host, $logonid, $password) or die "not ok 2\n";
 print "ok 2\n";
 
-$jes->submit($job)                                  	or die "not ok 3\n";
+$jes->submit($job)                                   or die "not ok 3\n";
 print "ok 3\n";
 
-$aref = $jes->wait_for_results($jobname)				or die "not ok 4\n";
+$aref = $jes->wait_for_results($jobname)             or die "not ok 4\n";
 print "ok 4\n";
 
-$fails = $jes->get_results($aref)						and die "not ok 5\n";
+$fails = $jes->get_results($aref)                    and die "not ok 5\n";
 print "ok 5\n";
 
-$fails = $jes->delete_results($aref)					and die "not ok 6\n";
+$fails = $jes->delete_results($aref)                 and die "not ok 6\n";
 print "ok 6\n";
 
-$jes->quit												or die "not ok 7\n";
+$jes->quit                                           or die "not ok 7\n";
 print "ok 7\n";
