@@ -15,3 +15,22 @@ Revision history for Perl extension MVS::JESFTP.
 	* Changed default timeout in wait_for_results to 60 seconds.
 
 	* Updated documentation. Prepared new installation packages.
+
+1.00  Mon Aug 12 08:13:00 2002  Mike Owens <mike.owens@state.nm.us>
+
+    * Running under Perl 5.8.0 on Solaris produced a "Can't use an undefined
+      valued as an ARRAY reference at blib/lib/MVS/JESFTP.pm line 149" error.
+      Net::FTP dir() now returns an array in an array context, so I didn't
+      need the @{$self->dir} construction to grep. Changed to just $self->dir.
+
+    * Net::FTP quit() now returns false on failure, so changed test.pl test 7
+      accordingly.
+
+    * Bumped version to 1.00 (seems stable enough for that).
+
+1.05
+
+    * sub submit: changed the quoted SITE command to 'FILETYPE=JES...'.
+
+    * sub wait_for_results: now returns undef if no results; updated POD
+      documentation.

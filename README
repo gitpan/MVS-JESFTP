@@ -56,7 +56,7 @@ METHODS
     This method waits for the output of the submitted job to arrive in the
     JES *hold queue*. `wait_for_results' returns an array reference `$aref'
     to the a list of output files for the job suitable for input to
-    `get_results'.(1)
+    `get_results', or `undefined' if NO results were obtained. (1)
 
     `wait_for_results' takes two arguments:
 
@@ -111,7 +111,7 @@ PREREQUISITES
     You have to have Net::FTP installed.
 
 INSTALLATION
-     tar -xzf MVS-JESFTP-0.01.tar.gz
+     tar xzf MVS-JESFTP-1.05.tar.gz
      perl Makefile.PL
      make
      #
@@ -143,4 +143,3 @@ SEE ALSO
     `perl(1)'
 
     `Net::FTP'
-

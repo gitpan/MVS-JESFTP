@@ -19,11 +19,11 @@ print "ok 1\n";
 # of the test code):
 
 
-# modify these variables for your installation; also modify test.jcl
+# modify these variables for your installation; also modify TEST.SEQ
 # as needed.
 
 my($host, $logonid, $password, $job, $jobname) =
-	('164.64.7.1', 'DPMIKE', 'JTREE', './TEST.SEQ', 'DPMIKE1');
+	('nmgsdisd.state.nm.us', 'DPMIKE', 'JTREE', './TEST.SEQ', 'DPMIKE1');
 
 $jes = MVS::JESFTP->open($host, $logonid, $password)	or die "not ok 2\n";
 print "ok 2\n";
@@ -40,5 +40,5 @@ print "ok 5\n";
 $fails = $jes->delete_results($aref)					and die "not ok 6\n";
 print "ok 6\n";
 
-$jes->quit												and die "not ok 7\n";
+$jes->quit												or die "not ok 7\n";
 print "ok 7\n";

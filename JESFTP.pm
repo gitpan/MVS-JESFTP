@@ -1,4 +1,4 @@
-# $Id
+# $Id: JESFTP.pm,v 1.5 2003/07/09 19:15:40 mikeo Exp $
 
 package MVS::JESFTP;
 
@@ -46,7 +46,7 @@ use Net::FTP;
 
 @ISA = qw(Exporter Net::FTP);
 @EXPORT = qw();
-$VERSION = '0.03';
+$VERSION = '1.5';
 
 =pod
 
@@ -103,7 +103,7 @@ returns C<undefined>.
 sub submit { #----------------------------------------------------------
 	my($self, $job) = @_;
 
-	$self->quot('SITE', 'FILE=JES JESLRECL=80') or return undef;
+	$self->quot('SITE', 'FILETYPE=JES JESLRECL=80') or return undef;
 
 	return $self->put($job);
 } #---------------------------------------------------------------------
@@ -115,7 +115,7 @@ sub submit { #----------------------------------------------------------
 This method waits for the output of the submitted job to arrive in the
 JES I<hold queue>. C<wait_for_results> returns an array reference
 C<$aref> to the a list of output files for the job suitable for input to
-C<get_results>.(1)
+C<get_results>, or C<undefined> if NO results could be obtained. (1)
 
 C<wait_for_results> takes two arguments:
 
@@ -139,18 +139,14 @@ sub wait_for_results { #------------------------------------------------
 	$JOB =~ s/\..+$//;
 	$TIMEOUT ||= 60;
 
-	my @results = undef;
+	my @results = ();
 	my $i = 0;
 	while (++$i <= $TIMEOUT) {
-
 		# print "$i: waiting for $JOB...\n";
-
-		last if (@results =
-			grep /^$JOB\s+JOB\d+\s+OUTPUT/, @{$self->dir}
-		);
+		last if (@results = grep /^$JOB\s+JOB\d+\s+OUTPUT/, $self->dir);
 		sleep(1);
 	}
-	return \@results;
+	return (@results) ? \@results : undef;
 } #---------------------------------------------------------------------
 
 =pod
@@ -160,7 +156,7 @@ sub wait_for_results { #------------------------------------------------
 This method retrieves the output of the submitted job from the JES
 I<hold queue>. C<get_results> returns C<undefined> if successful;
 otherwise it returns a reference to an array of names of the files
-it could not retrieve. (1)
+it could NOT retrieve. (1)
 
 C<get_results> takes one argument:
 
@@ -246,7 +242,7 @@ You have to have Net::FTP installed.
 
 =head1 INSTALLATION
 
- tar -xzf MVS-JESFTP-0.01.tar.gz
+ tar xzf MVS-JESFTP-1.00.tar.gz
  perl Makefile.PL
  make
  #
