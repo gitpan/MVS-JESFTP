@@ -1,0 +1,17 @@
+Revision history for Perl extension MVS::JESFTP.
+
+0.01  Tue Jan 18 15:22:49 2000	Mike Owens <mike.owens@state.nm.us>
+
+	* Net::FTP::JES; original version; created by h2xs 1.19.
+
+0.02  Wed Feb  2 07:55:00 2000	Mike Owens <mike.owens@state.nm.us>
+
+	* On advice from CPAN modules coordinators, changed name to MVS::JESFTP.
+
+0.03  Wed Nov 28 08:10:46 2000	Mike Owens <mike.owens@state.nm.us>
+
+	* Implemented methods wait_for_results, get_results, and delete_results.
+
+	* Changed default timeout in wait_for_results to 60 seconds.
+
+	* Updated documentation. Prepared new installation packages.
